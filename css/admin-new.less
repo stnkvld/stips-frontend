@@ -27,6 +27,12 @@
     background-color: #f6f8fA;
 }
 
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 .container {
     margin: 0 auto;
     height: 100%;
@@ -131,6 +137,8 @@
 }
 
 .accordion {
+    position: relative;
+
     &:after {
         .after-image(15px, 7px, '../images/content-box-dropdown.svg');
 
@@ -146,6 +154,9 @@
 
         .accordion__content {
             height: 0;
+            border-top: 1px solid rgba(0,0,0,0.2);
+            margin-top: 17px;
+            overflow: hidden;
         }
     }
 }
@@ -161,6 +172,7 @@
         margin-bottom: 17px;
 
         .heading-wrapper {
+            display: inline-block;
             vertical-align: middle;
         }
 
@@ -190,10 +202,6 @@
         }
 
         .content-box__content {
-            border-top: 1px solid rgba(0,0,0,0.2);
-            margin-top: 17px;
-            overflow: hidden;
-
             .content-box__content-wrapper {
                 padding: 18px 26px;
             }
@@ -260,6 +268,7 @@
         margin-bottom: 14px;
 
         span {
+            display: inline-block;
             text-transform: uppercase;
             line-height: normal;
         }   
@@ -267,6 +276,29 @@
 
     .asset {
         background-color: #fff;
+    }
+}
+
+.characteristics {
+    .assets__heading {
+        .gridable(388px 211px 297px 1fr);
+
+        span:last-child {
+            text-align: right;
+        }
+    }
+
+    .asset {
+        .asset__content {
+            .gridable(388px 211px 297px 1fr);
+            border: 0;
+        }
+    }
+
+    .accordion {        
+        &:after {
+            top: 27px;
+        }
     }
 }
 
@@ -329,6 +361,7 @@
             color: #ff360e;
             padding-top: 9px;
             padding-bottom: 7px;
+            cursor: pointer;
 
             &:not(:last-child) {
                 border-right: 1px solid #ff360e;
@@ -340,6 +373,10 @@
             }
         }
     }
+}
+
+[data-role="tab-content"] {
+    display: none;
 }
 
 .records {
@@ -362,7 +399,12 @@
             flex-grow: 1;
             border: 1px dashed #A9A9A9;
             border-radius: 3px;
-            padding: 37px 61px 29px 61px;
+            padding: 37px 0 29px 0;
+
+            .record__content-wrapper {
+                max-width: 355px;
+                margin: 0 auto;
+            }
 
             .record__email-date {
                 border-bottom: 1px solid rgba(0,0,0,0.3);
@@ -421,15 +463,19 @@
 
                         .record__btn {
                             width: 48%;
+                            height: 25px;
                             font-size: 12px;
-                            padding: 7px 0;
+                            line-height: 14px;
+                            padding: 5px 0;
                         }
                     }
 
-                    &.record__modify-data--type_select {
+                    &.record__modify-data--full-width {
                         grid-column-start: 1;
                         grid-column-end: 3;
+                    }
 
+                    &.record__modify-data--type_select {
                         .record__modify-data-value {
                             position: relative;
 
@@ -456,6 +502,12 @@
                     font-size: 14px;
                     padding: 7px 14px;
                     margin-right: 5px;
+                    transition: box-shadow 0.3s ease-in-out;
+
+                    &:active, &:focus {
+                        box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.25);
+                        transition: box-shadow 0.3s ease-in-out;
+                    }
                 }
 
                 &.record__buttons--one {
@@ -531,6 +583,7 @@
         .after-image(5px, 5px, '../images/remove-record-modify-value.svg');
 
         right: 10px;
+        cursor: pointer;
     }
 }
 
@@ -539,6 +592,10 @@
         &.container--admin {
             width: 100%;
         }
+    }
+
+    .content {
+        padding: 25px 19px;
     }
 }
 
@@ -597,6 +654,26 @@
         .content-box__search {
             width: 325px;
         }
+
+        .content-box {
+            .content-box__heading {
+                padding-left: 42px;
+                padding-right: 42px;
+            }
+
+            .content-box__content {
+                .content-box__content-wrapper {
+                    padding-left: 42px;
+                    padding-right: 42px;
+                }
+            }
+        }
+    }
+
+    .accordion {
+        &:after {
+            right: 42px;
+        }
     }
 
     .header__top {
@@ -611,6 +688,10 @@
         .dropdown-menu {
             display: none;
         }
+    }
+
+    .records {
+        grid-template-columns: 100%;
     }
 }
 
@@ -632,6 +713,8 @@
         padding-right: 10px;
 
         .content-box__heading {
+            margin-bottom: 41px;
+
             .content-box__search {
                 margin-top: 23px;
             }
@@ -641,6 +724,14 @@
                 right: 0;
                 top: 0;
             }
+
+            .heading-wrapper {
+                margin-bottom: 21px;
+            }
+
+            .tab-switcher {
+                float: none;
+            }
         }
 
         .content-box__search {
@@ -649,6 +740,20 @@
 
             &.content-box__search--heading-search {
                 margin-left: 0;
+            }
+        }
+
+        .content-box {
+            .content-box__heading {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .content-box__content {
+                .content-box__content-wrapper {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
             }
         }
     }
@@ -662,6 +767,29 @@
     .asset {
         .asset__content {
             .gridable(109px 1fr, 60px);
+        }
+    }
+
+    .records {
+        .record {
+            .record__content {
+                padding-left: 10px;
+                padding-right: 10px;
+
+                .record__content-wrapper {
+                    max-width: none;
+                }
+
+                .record__main-info {
+                    grid-template-columns: 100%;
+                }
+
+                .record__buttons {
+                    .record__btn {
+                        margin-right: 0;
+                    }
+                }
+            }
         }
     }
 }
