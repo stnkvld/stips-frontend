@@ -6,7 +6,7 @@ $(function() {
         navToggleBtn.trigger('click');
     });
 
-    $('.accordion').on('click', function(e) {
+    $('.accordion:not(.in-trash)').on('click', function(e) {
         if ( !$(e.target).hasClass('accordion__content') &&
               $(e.target).parents('.accordion__content').length == 0 )
             $(this).toggleClass('collapsed');
@@ -31,5 +31,15 @@ $(function() {
     $('.tag__remove').on('click', function(e) {
         e.stopPropagation();
         $(this).closest('.tag').detach();
+    });
+
+    $('.accordion .btn--move-to-trash').on('click', function() {
+        $(this).closest('.accordion').addClass('in-trash');
+    });
+
+    $('.ios7-switch input[type="checkbox"]').on('change', function() {
+        var switchContainer = $(this).closest('.ios7-switch');
+        switchContainer.siblings('.ios7-switch-wrapper__label-right').toggleClass('active');
+        switchContainer.siblings('.ios7-switch-wrapper__label-left').toggleClass('active');
     });
 });
