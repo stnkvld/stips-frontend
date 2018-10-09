@@ -1,9 +1,17 @@
 $(function() {
-    var navToggleBtn = $('.nav-toggle-button');
+    var sidebar = $('.sidebar');
+    var navBtn = $('.nav-toggle-button');
     var overlay = $('.overlay');
+    var btnAddCategory = $('[data-tab-id="characteristics"] .btn--add-category');
+
+    navBtn.on('click', function() {
+        overlay.show();
+    });  
 
     overlay.on('click', function() {
-        navToggleBtn.trigger('click');
+        sidebar.removeClass('active');
+        overlay.hide();
+        $('.modal').hide();
     });
 
     $('.accordion:not(.in-trash)').on('click', function(e) {
@@ -41,5 +49,14 @@ $(function() {
         var switchContainer = $(this).closest('.ios7-switch');
         switchContainer.siblings('.ios7-switch-wrapper__label-right').toggleClass('active');
         switchContainer.siblings('.ios7-switch-wrapper__label-left').toggleClass('active');
+    });
+
+    btnAddCategory.on('click', function() {
+        $('.overlay').show();
+        $('.modal--add-category').show();
+    });
+
+    $('.modal__close').on('click', function() {
+        overlay.trigger('click');
     });
 });
