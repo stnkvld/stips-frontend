@@ -6,7 +6,7 @@ $(function() {
 
     navBtn.on('click', function() {
         overlay.show();
-    });  
+    });
 
     overlay.on('click', function() {
         sidebar.removeClass('active');
@@ -15,9 +15,22 @@ $(function() {
     });
 
     $('.accordion:not(.in-trash)').on('click', function(e) {
+        var accordionContent = $(this).find('.accordion__content');
+        var contentWrapper = accordionContent.find('.content-box__content-wrapper');
+        if ( !contentWrapper.length ) contentWrapper = accordionContent.find('.assets--subassets');
+
         if ( !$(e.target).hasClass('accordion__content') &&
-              $(e.target).parents('.accordion__content').length == 0 )
-            $(this).toggleClass('collapsed');
+              $(e.target).parents('.accordion__content').length == 0 ) {
+            if ( $(this).hasClass('collapsed') )
+                accordionContent.animate({ maxHeight: contentWrapper.outerHeight() + 10 }, 600);
+            else
+                accordionContent.animate({ maxHeight: 0 }, 300);
+
+            var self = $(this);
+            setTimeout(function() {
+                self.toggleClass('collapsed');
+            }, 300);
+        }
     });
 
     $('.record__modify-data-value-remove').on('click', function(e) {

@@ -115,6 +115,8 @@ select {
 }
 .accordion .accordion__content {
   border-top: 1px solid rgba(0, 0, 0, 0.2);
+  max-height: 0;
+  overflow: hidden;
 }
 .accordion:after {
   content: '';
@@ -135,8 +137,6 @@ select {
   transform: rotate(0deg);
 }
 .accordion.collapsed .accordion__content {
-  height: 0;
-  overflow: hidden;
   border-top: 0;
 }
 .content {
@@ -147,7 +147,7 @@ select {
 .content .content-box__heading {
   font-family: 'Graphik LC Web Medium', sans-serif;
   font-weight: 400;
-  line-height: 35px;
+  line-height: normal;
   text-transform: uppercase;
   border-bottom: 0;
   padding-bottom: 0;
@@ -160,6 +160,9 @@ select {
 .content .content-box__heading .content-box__btn,
 .content .content-box__heading .tab-switcher {
   float: right;
+}
+.content .content-box__heading.content-box__heading--with-something {
+  line-height: 35px;
 }
 .content .content-box {
   box-shadow: 0 9px 20px rgba(0, 0, 0, 0.1);
@@ -402,6 +405,15 @@ select {
   align-items: stretch;
   margin-bottom: 30px;
 }
+.records .record .record__content .record__main-info .record__modify-data:not(.modify-data--type_buttons) .record__modify-data-value:after {
+  content: '';
+  position: absolute;
+  right: 27px;
+  top: 10%;
+  width: 26px;
+  height: 80%;
+  background: linear-gradient(270deg, #ffffff 25%, rgba(255, 255, 255, 0) 86%);
+}
 .records .record .record__content .record__main-info .record__modify-data.record__modify-data--full-width {
   grid-column-start: 1;
   grid-column-end: 3;
@@ -616,8 +628,8 @@ select {
 }
 .assets--characteristics .asset {
   grid-template-columns: 100%;
-  height: auto;
   min-height: 60px;
+  height: auto;
   margin-bottom: 20px;
 }
 .assets--characteristics .asset .asset__content {
@@ -1051,6 +1063,9 @@ select {
   }
 }
 @media screen and (max-width: 1024px) {
+  .records {
+    grid-template-columns: 100%;
+  }
   .form-group .form-group__fields-wrapper {
     flex-wrap: wrap;
     padding-bottom: 20px;
@@ -1065,6 +1080,12 @@ select {
   .form-group .modify-data[data-field-width="253"] select {
     width: 215px;
   }
+  .assets--characteristics .assets__heading {
+    grid-template-columns: 256px 176px 170px 1fr;
+  }
+  .assets--characteristics .asset .asset__content {
+    grid-template-columns: 256px 176px 170px 1fr;
+  }
 }
 @media screen and (max-width: 960px) {
   .content .content-box__search {
@@ -1077,6 +1098,9 @@ select {
   .content .content-box .content-box__content .content-box__content-wrapper {
     padding-left: 42px;
     padding-right: 42px;
+  }
+  .form-group .modify-data:not(.param):not(:first-of-type) {
+    margin-left: 20px;
   }
 }
 @media screen and (max-width: 770px) {
@@ -1125,15 +1149,6 @@ select {
   .header__top .dropdown-menu {
     display: none;
   }
-  .records {
-    grid-template-columns: 100%;
-  }
-  .assets--characteristics .assets__heading {
-    grid-template-columns: 256px 176px 170px 1fr;
-  }
-  .assets--characteristics .asset .asset__content {
-    grid-template-columns: 256px 176px 170px 1fr;
-  }
   .form-group.form-fields .form-group__fields-wrapper {
     position: relative;
     padding-left: 4px;
@@ -1159,6 +1174,9 @@ select {
   }
 }
 @media screen and (max-width: 640px) {
+  .content .content-box__heading {
+    overflow: initial;
+  }
   .content .content-box__heading .content-box__btn {
     float: none;
     margin-top: 15px;
@@ -1217,11 +1235,9 @@ select {
     top: 0;
     margin-top: 0;
   }
-  .content .content-box__heading .heading-wrapper {
-    margin-bottom: 21px;
-  }
   .content .content-box__heading .tab-switcher {
     float: none;
+    margin-top: 21px;
   }
   .content .content-box__search {
     display: block;

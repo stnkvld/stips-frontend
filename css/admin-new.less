@@ -161,6 +161,8 @@ select {
 
     .accordion__content {
         border-top: 1px solid rgba(0,0,0,0.2);
+        max-height: 0;
+        overflow: hidden;
     }
 
     &:after {
@@ -177,8 +179,6 @@ select {
         }
 
         .accordion__content {
-            height: 0;
-            overflow: hidden;
             border-top: 0;
         }
     }
@@ -192,7 +192,7 @@ select {
     .content-box__heading {
         font-family: 'Graphik LC Web Medium', sans-serif;
         font-weight: 400;
-        line-height: 35px;
+        line-height: normal;
         text-transform: uppercase;
         border-bottom: 0;
         padding-bottom: 0;
@@ -206,6 +206,10 @@ select {
         .content-box__btn,
         .tab-switcher {
             float: right;
+        }
+
+        &.content-box__heading--with-something {
+            line-height: 35px;
         }
     }
 
@@ -470,16 +474,18 @@ select {
                 margin-bottom: 30px;
 
                 .record__modify-data {
-                    .record__modify-data-value {
-                        // &:after {
-                        //     content: '';
-                        //     position: absolute;
-                        //     right: 27px;
-                        //     top: 10%;
-                        //     width: 26px;
-                        //     height: 80%;
-                        //     background: linear-gradient(270deg, #fff 25%, rgba(255, 255, 255, 0) 86%);
-                        // }
+                    &:not(.modify-data--type_buttons) {
+                        .record__modify-data-value {
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                right: 27px;
+                                top: 10%;
+                                width: 26px;
+                                height: 80%;
+                                background: linear-gradient(270deg, #fff 25%, rgba(255, 255, 255, 0) 86%);
+                            }
+                        }
                     }
 
                     &.record__modify-data--full-width {
@@ -698,8 +704,8 @@ select {
 
     .asset {
         grid-template-columns: 100%;
-        height: auto;
         min-height: 60px;
+        height: auto;
         margin-bottom: 20px;
 
         .asset__content {
@@ -1206,6 +1212,10 @@ select {
 }
 
 @media screen and (max-width: 1024px) {
+    .records {
+        grid-template-columns: 100%;
+    }
+
     .form-group {
         .form-group__fields-wrapper {
             flex-wrap: wrap;
@@ -1222,6 +1232,18 @@ select {
             &[data-field-width="253"] input, 
             &[data-field-width="253"] select {
                 width: 215px;
+            }
+        }
+    }
+
+    .assets--characteristics {
+        .assets__heading {
+            grid-template-columns: 256px 176px 170px 1fr;
+        }
+
+        .asset {
+            .asset__content {
+                grid-template-columns: 256px 176px 170px 1fr;
             }
         }
     }
@@ -1244,6 +1266,14 @@ select {
                     padding-left: 42px;
                     padding-right: 42px;
                 }
+            }
+        }
+    }
+
+    .form-group {
+        .modify-data {
+            &:not(.param):not(:first-of-type) {
+                margin-left: 20px;
             }
         }
     }
@@ -1315,22 +1345,6 @@ select {
         }
     }
 
-    .records {
-        grid-template-columns: 100%;
-    }
-
-    .assets--characteristics {
-        .assets__heading {
-            grid-template-columns: 256px 176px 170px 1fr;
-        }
-
-        .asset {
-            .asset__content {
-                grid-template-columns: 256px 176px 170px 1fr;
-            }
-        }
-    }
-
     .form-group {
         &.form-fields {
             .form-group__fields-wrapper {
@@ -1372,6 +1386,8 @@ select {
 @media screen and (max-width: 640px) {
     .content {
         .content-box__heading {
+            overflow: initial;
+
             .content-box__btn {
                 float: none;
                 margin-top: 15px;
@@ -1455,12 +1471,9 @@ select {
                 margin-top: 0;
             }
 
-            .heading-wrapper {
-                margin-bottom: 21px;
-            }
-
             .tab-switcher {
                 float: none;
+                margin-top: 21px;
             }
         }
 
