@@ -2,7 +2,7 @@ $(function() {
     var sidebar = $('.sidebar');
     var navBtn = $('.nav-toggle-button');
     var overlay = $('.overlay');
-    var btnAddCategory = $('[data-tab-id="characteristics"] .btn--add-category');
+    var btnAddCategory = $('.btn--add-category');
 
     navBtn.on('click', function() {
         overlay.show();
@@ -71,5 +71,9 @@ $(function() {
 
     $('.modal__close').on('click', function() {
         overlay.trigger('click');
+    });
+
+    $('.datepicker-element').each(function(datepickerIndex, datepickerItem) {
+        $(datepickerItem).datepicker();
     });
 });

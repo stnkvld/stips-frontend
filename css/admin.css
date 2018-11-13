@@ -902,12 +902,12 @@
     width: 100%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.075);
   }
-  .main {
+  /* .main {
     display: grid;
     position: relative;
     height: 100%;
     grid-template-columns: 200px auto;
-  }
+  } */
   .sidebar {
     padding-top: 20px;
     background-color: #fff;
@@ -930,7 +930,7 @@
   .content {
     margin-top: 66px;
     padding: 20px;
-    overflow: auto;
+    /* overflow: auto; */
   }
   .username {
     font-weight: 600;
